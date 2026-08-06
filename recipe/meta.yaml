@@ -8,17 +8,10 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 991666e498f60dbf3e49b8b7678f5559b8a65034fdf61aae62cdecdb7d89c770
-  patches:
-    - 0001-build-with-setuptools.patch
-    - 0002-setup.py-read-MESON_ARGS.patch  # [build_platform != target_platform]
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
-  script_env:
-    # need to specify PKG_CONFIG (only when cross-compiling, since it's not included
-    # in the meson cross file).
-    - PKG_CONFIG="{{ BUILD_PREFIX }}/bin/pkg-config"  # [build_platform != target_platform]
   skip: true  # [win]
 
 requirements:
@@ -35,10 +28,9 @@ requirements:
     - dbus
     - glib
     - meson >=0.60.0
+    - meson-python
     - pip >=21.3
     - python
-    - setuptools
-    - wheel
   run:
     - dbus
     - python
