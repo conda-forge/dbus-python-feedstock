@@ -1,21 +1,20 @@
 schema_version: 1
 
 context:
-  name: dbus-python
   version: "1.4.0"
 
 package:
-  name: ${{ name|lower }}
+  name: dbus-python
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  url: https://pypi.org/packages/source/d/dbus-python/dbus-python-${{ version }}.tar.gz
   sha256: 991666e498f60dbf3e49b8b7678f5559b8a65034fdf61aae62cdecdb7d89c770
 
 build:
   number: 0
   skip: win
-  script: ${{ PYTHON }} -m pip install . -vv
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
@@ -34,7 +33,7 @@ requirements:
     - dbus
     - glib
     - meson >=0.60.0
-    - meson-python
+    - meson-python >=0.8.1
     - pip >=21.3
     - python
   run:
