@@ -10,6 +10,10 @@ package:
 source:
   url: https://pypi.org/packages/source/d/dbus-python/dbus-python-${{ version }}.tar.gz
   sha256: 991666e498f60dbf3e49b8b7678f5559b8a65034fdf61aae62cdecdb7d89c770
+  patches:
+    # https://src.fedoraproject.org/rpms/dbus-python/raw/rawhide/f/Revert-using-Py_TPFLAGS_MANAGED_WEAKREF.patch
+    # (for python 3.15 compatibility)
+    - patches/Revert-using-Py_TPFLAGS_MANAGED_WEAKREF.patch
 
 build:
   number: 1
