@@ -36,6 +36,7 @@ requirements:
     - meson-python >=0.8.1
     - pip >=21.3
     - python
+    - libpython
   run:
     - dbus
     - python
