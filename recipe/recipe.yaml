@@ -1,22 +1,22 @@
 schema_version: 1
 
 context:
-  version: "1.4.0"
+  version: "1.5.0"
 
 package:
   name: dbus-python
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/d/dbus-python/dbus-python-${{ version }}.tar.gz
-  sha256: 991666e498f60dbf3e49b8b7678f5559b8a65034fdf61aae62cdecdb7d89c770
+  url: https://pypi.org/packages/source/d/dbus-python/dbus_python-${{ version }}.tar.gz
+  sha256: ac94ce330879108e5d37105164cc14b595bdf9326d2ce4a5acad6c1ab2bf6476
   patches:
     # https://src.fedoraproject.org/rpms/dbus-python/raw/rawhide/f/Revert-using-Py_TPFLAGS_MANAGED_WEAKREF.patch
     # (for python 3.15 compatibility)
     - patches/Revert-using-Py_TPFLAGS_MANAGED_WEAKREF.patch
 
 build:
-  number: 1
+  number: 0
   skip: win
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
