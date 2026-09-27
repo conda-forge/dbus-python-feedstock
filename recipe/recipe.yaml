@@ -16,7 +16,10 @@ build:
   skip: win
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation -Csetup-args=-Dtests=true -Cbuild-dir=build
-    - ninja -C build test
+    # TODO: figure out how to make this work
+    - if: build_platform == target_platform
+      then:
+        - ninja -C build test
 
 requirements:
   build:
